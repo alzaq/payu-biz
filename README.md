@@ -13,18 +13,17 @@ Prostředník reaguje na GET request `/payu` a odešle POST request na PayU.
 - `email` : string
 - `phone` : string
 
-## K diskuzi
-- `signature` : string (generovat na klientovi `signature` a ověřovat ho poté na serveru tyhle parametry, jestli přišli v pořádku)
-
 **Možná i tyhle, to se domluvíme viz níže, jestli je nutné je posílat nebo je mít jen na serveru**
 - `surl` : string (redirect v případě **OK**)
 - `furl` : string (redirect v případě **FAIL**)
 
+## K diskuzi
+- `signature` : string (generovat na klientovi `signature` a ověřovat ho poté na serveru tyhle parametry, jestli přišli v pořádku)
 
-### Prostředník reaguje i na další dva GET requesty např.
+## Prostředník reaguje i na další dva GET requesty např.
 
-- `/payu/success`
-- `/payu/failed`
+- `/payu/success` - podle toho zjistím jestli v pořádku a na server udělám `placeNewOrder` s daným `uuid`
+- `/payu/failed` - vypíšu chybu
 
 ## Flow
 1. Já v klientu vygeneruju `uuid` a posílám povinné informace na prostředníka

@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>ZOOMIN PAYU BIZ PROTOTYPE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("payu_form").submit();
+      };
+    </script>
+  </head>
+  <body>
+    <form id="payu_form" action="{{ .Payu }}" method="POST">
+      {{ range $key, $value := .Payment }}
+        <input name="{{ $key }}" value="{{ $value }}" type="text" /><br />
+      {{ end }}
+      <input name="hash" value="{{ .Hash }}" type="text" />
+    </form>
+  </body>
+</html>

@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha512"
 	"encoding/hex"
+	"io"
 	"net/http"
 	"strings"
 
@@ -22,6 +24,18 @@ func preparePayuHash(payment map[string]string) string {
 	hash := hex.EncodeToString(sha.Sum(nil))
 
 	return hash
+}
+
+func putRequest(url string, data io.Reader) (*http.Response, error) {
+	client := &http.Client{}
+	req, err := http.NewRequest(http.MethodPut, url, data)
+	req.Header.Add("Content-Type", "binary/octet-stream")
+
+	if err != nil {
+		panic(err)
+	}
+
+	return client.Do(req)
 }
 
 func main() {
@@ -78,6 +92,33 @@ func main() {
 			http.StatusOK,
 			gin.H{
 				"status": "failed",
+			},
+		)
+	})
+
+	router.POST("/upload", func(c *gin.Context) {
+		r := c.Request
+
+		url := r.FormValue("url")
+
+		file, _, _ := r.FormFile("file")
+		defer file.Close()
+
+		buf := bytes.NewBuffer(nil)
+		if _, err := io.Copy(buf, file); err != nil {
+			panic(err)
+		}
+
+		resp, err := putRequest(url, buf)
+
+		if err != nil {
+			panic(err)
+		}
+
+		c.JSON(
+			resp.StatusCode,
+			gin.H{
+				"status": "OK",
 			},
 		)
 	})

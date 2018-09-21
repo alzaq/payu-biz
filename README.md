@@ -33,3 +33,12 @@ Prostředník reaguje na GET request `/payu` a odešle POST request na PayU.
 4. Celé to končí buď na `surl` nebo `furl` nebo tím, že uživatel zavře **webview**, ve kterém to celé renderujeme
 
 ## Já myslím, že to je easy a na začátek použitelné
+
+# TEMP větev na POST /upload
+Udělal jsem dočasné špatné řešení, ale abych vůbec byl schopný udělat order.
+Jelikož DirectApp umí upload pouze pomocí FORMDATA nebo STRING (base64).
+Udělal jsem zase prostředníka (později by šlo vyřešit např. Lambdou přímo na bucketu).
+
+Očekává POST na `/upload` kde mu přijde `file` a `url`.
+Jedině co dělá ta PUT request a nahraje file na S3.
+Je to sice dlouhé a 2x tak náročné, ale zatím nic lepšího nejde.

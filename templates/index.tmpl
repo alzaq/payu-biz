@@ -10,11 +10,12 @@
     </script>
   </head>
   <body>
-    <form id="payu_form" action="{{ .Payu }}" method="POST">
+    <form id="payu_form" action="{{ .Payu }}" method="POST" style="display: none;">
       {{ range $key, $value := .Payment }}
         <input name="{{ $key }}" value="{{ $value }}" type="text" /><br />
       {{ end }}
       <input name="hash" value="{{ .Hash }}" type="text" />
     </form>
+    <p>Please wait...</p>
   </body>
 </html>

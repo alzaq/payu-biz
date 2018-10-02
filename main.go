@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha512"
 	"encoding/hex"
+	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -108,6 +109,8 @@ func main() {
 		if _, err := io.Copy(buf, file); err != nil {
 			panic(err)
 		}
+
+		fmt.Println(url)
 
 		resp, err := putRequest(url, buf)
 

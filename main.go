@@ -49,8 +49,6 @@ func main() {
 		firstname := c.Query("firstname")
 		email := c.Query("email")
 		phone := c.Query("phone")
-		surl := c.Query("surl")
-		furl := c.Query("furl")
 
 		payment := map[string]string{
 			"key":         "gtKFFx",
@@ -60,8 +58,8 @@ func main() {
 			"firstname":   firstname,
 			"email":       email,
 			"phone":       phone,
-			"surl":        surl,
-			"furl":        furl,
+			"surl":        "https://toalety.herokuapp.com/payu/success",
+			"furl":        "https://toalety.herokuapp.com/payu/failed",
 			"salt":        "eCwWELxi",
 		}
 

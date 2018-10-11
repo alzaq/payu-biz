@@ -22,7 +22,7 @@ Prostředník reaguje na GET request `/payu` a odešle POST request na PayU.
 
 ## Flow
 1. Já v klientu vygeneruju `uuid` a posílám povinné informace na prostředníka pomocí GET
-2. Server vygeneruje ověřovací `hash` a posílá a vyrenderuje HTML, kde je <form method=POST> a tím posílám request na PAYU (při onload)
+2. Server vygeneruje ověřovací `hash` a vyrenderuje HTML, kde je `<form method=POST>` a tím posílá request na PAYU. (při události window.onload)
 3. Tady už mám jejich webovku a vyberu si platbu dle libosti. Takže moc nevím co se tu děje nebo ne
 
 4. Celé to končí buď na `surl` nebo `furl` nebo tím, že uživatel zavře **webview**, ve kterém to celé renderujeme
